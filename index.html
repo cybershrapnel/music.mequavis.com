@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>mequavis.music.com</title>
+
+  <!-- Favicon (option A): point to an external icon you already have -->
+  <link rel="icon" type="image/png" href="https://xtdevelopment.net/ace/static/favicon.ico" />
+
+  <!-- Favicon (option B): if you upload your own to this host, use:
+  <link rel="icon" href="/favicon.ico" />
+  -->
+
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    #frame {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      border: 0;
+      display: block;
+      background: #000;
+    }
+    /* Optional: tiny loading overlay */
+    #loading {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font: 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: #cfd6ff;
+      background: #000;
+      opacity: 1;
+      transition: opacity 200ms ease;
+      pointer-events: none;
+      z-index: 10;
+    }
+    #loading.hidden { opacity: 0; }
+  </style>
+</head>
+<body>
+  <div id="loading">Loading MEQUAVIS ACE…</div>
+
+  <iframe
+    id="frame"
+    src="https://xtdevelopment.net/ace/"
+    allow="fullscreen; clipboard-read; clipboard-write"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+
+  <noscript>
+    <div style="position:fixed;inset:0;background:#000;color:#fff;padding:16px;">
+      This page requires JavaScript to display the embedded app.
+    </div>
+  </noscript>
+
+  <script>
+    (function () {
+      const f = document.getElementById("frame");
+      const loading = document.getElementById("loading");
+      f.addEventListener("load", () => loading.classList.add("hidden"));
+      // If it loads instantly from cache, hide quickly
+      setTimeout(() => loading.classList.add("hidden"), 2500);
+    })();
+  </script>
+</body>
+</html>
